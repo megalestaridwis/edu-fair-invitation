@@ -1,10 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // =====================================
-    // 1. MEMBACA DATA TAMU DARI CSV
-    // =====================================
-
     async function muatDataTamu() {
         const tabelTamu = document.getElementById("tabelTamu");
         const statusData = document.getElementById("statusData");
@@ -148,11 +144,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
-    // =====================================
-    // 2. PERSONALISASI UNDANGAN
-    // =====================================
-
     const params = new URLSearchParams(window.location.search);
 
     const namaParam = (params.get("nama") || "").trim();
@@ -191,11 +182,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     }
-
-
-    // =====================================
-    // 3. MENYIMPAN RSVP KE SUPABASE
-    // =====================================
 
     const formRSVP = document.getElementById("formRSVP");
 
@@ -264,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 pesan.style.color = "#105b33";
-                pesan.innerHTML = `<strong>✓ Terima kasih, ${namaVal}!</strong> Konfirmasi kehadiran (<strong>${konfirmasi}</strong>) berhasil disimpan ke sistem.`;
+                pesan.innerHTML = `<strong>✓ Terima kasih, ${namaVal}!</strong>.`;
 
                 if (selectKonfirmasi) selectKonfirmasi.disabled = true;
                 if (inputNama) inputNama.readOnly = true;
@@ -287,11 +273,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-
-
-    // =====================================
-    // 4. MENJALANKAN FUNGSI
-    // =====================================
 
     muatDataTamu();
 
