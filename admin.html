@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Edu Fair & Career Day 2026</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .admin-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(16, 45, 85, 0.08);
+            overflow: hidden;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0 30px;
+        }
+
+        .stat-card {
+            background: #f8fbff;
+            border: 1px solid #d9e6f5;
+            padding: 18px 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-card h4 {
+            font-size: 14px;
+            color: #5a738e;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-card .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #173e6b;
+        }
+
+        .stat-card.hadir .stat-number {
+            color: #1b8a43;
+        }
+
+        .stat-card.tidak-hadir .stat-number {
+            color: #c0392b;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0 15px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .search-box input, .filter-select {
+            padding: 10px 14px;
+            border: 1px solid #c7d8eb;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-box input {
+            flex: 1;
+        }
+
+        .search-box input:focus, .filter-select:focus {
+            border-color: #2469a8;
+        }
+
+        .btn-refresh {
+            background: #173e6b;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-refresh:hover {
+            background: #2469a8;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 10px;
+            border: 1px solid #d7e2f0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th, td {
+            border-bottom: 1px solid #e1ebf5;
+            padding: 12px 14px;
+            text-align: left;
+            overflow-wrap: anywhere;
+        }
+
+        th {
+            background: #173e6b;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fbff;
+        }
+
+        tr:hover {
+            background: #edf4fc;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .badge-hadir {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-tidak-hadir {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn-wa {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .btn-wa:hover {
+            background: #1da851;
+        }
+
+        .btn-view {
+            display: inline-block;
+            background: #e6b957;
+            color: #102d55;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            margin-left: 6px;
+        }
+
+        .btn-view:hover {
+            background: #f5d486;
+        }
+
+        .status {
+            color: #174879;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .empty-row td {
+            text-align: center;
+            padding: 30px;
+            color: #738a9c;
+            font-style: italic;
+        }
+
+        @media(max-width: 650px) {
+            .admin-section {
+                margin: 15px;
+                padding: 15px;
+            }
+
+            table {
+                min-width: 700px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <span class="label">SMKN 6 TANGERANG SELATAN</span>
+            <h1>ADMIN EDU FAIR</h1>
+            <p>Pengelolaan Data Undangan & Konfirmasi Kehadiran </p>
+        </div>
+    </header>
+
+    <main class="admin-section">
+
+        <!-- ============================================== -->
+        <!-- BAGIAN 1: STATISTIK & KONFIRMASI KEHADIRAN (RSVP) -->
+        <!-- ============================================== -->
+        <h2 style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;">
+            <span>Data Konfirmasi Kehadiran (RSVP)</span>
+            <span style="font-size: 13px; font-weight: normal; color: #1e7e34; background: #e8f5e9; padding: 4px 10px; border-radius: 12px;">● Terkoneksi ke Supabase</span>
+        </h2>
+        <p>Data konfirmasi kehadiran yang dikirimkan langsung oleh para tamu melalui formulir undangan.</p>
+
+        <!-- STATS -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h4>Total Konfirmasi</h4>
+                <div class="stat-number" id="statTotalRSVP">0</div>
+            </div>
+            <div class="stat-card hadir">
+                <h4>Hadir</h4>
+                <div class="stat-number" id="statHadir">0</div>
+            </div>
+            <div class="stat-card tidak-hadir">
+                <h4>Tidak Hadir</h4>
+                <div class="stat-number" id="statTidakHadir">0</div>
+            </div>
+            <div class="stat-card">
+                <h4>Total Undangan CSV</h4>
+                <div class="stat-number" id="statTotalUndangan">0</div>
+            </div>
+        </div>
+
+        <!-- TOOLBAR RSVP -->
+        <div class="toolbar">
+            <div class="search-box">
+                <input type="text" id="inputCariRSVP" placeholder="Cari nama atau instansi...">
+                <select id="filterStatusRSVP" class="filter-select">
+                    <option value="">Semua Status</option>
+                    <option value="Hadir">Hadir</option>
+                    <option value="Tidak Hadir">Tidak Hadir</option>
+                </select>
+            </div>
+            <button id="btnRefreshRSVP" class="btn-refresh" title="Muat ulang dari database">
+                ↻ Muat Ulang RSVP
+            </button>
+        </div>
+
+        <p class="status" id="statusRSVP">Memuat data konfirmasi kehadiran dari Supabase...</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 50px;">No</th>
+                        <th>Nama</th>
+                        <th>Instansi</th>
+                        <th>Kategori</th>
+                        <th>Konfirmasi</th>
+                        <th>Waktu Konfirmasi</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelRSVP">
+                    <tr class="empty-row"><td colspan="6">Memuat data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- ============================================== -->
+        <!-- BAGIAN 2: DAFTAR TAMU DARI CSV -->
+        <!-- ============================================== -->
+        <h2 style="margin-top: 50px;">Daftar Tamu Undangan (CSV)</h2>
+        <p>Daftar tamu dari file <code>data-tamu.csv</code> untuk pengiriman pesan undangan personal via WhatsApp.</p>
+
+        <div class="toolbar">
+            <div class="search-box">
+                <input type="text" id="inputCariTamu" placeholder="Cari tamu dari CSV...">
+            </div>
+        </div>
+
+        <p class="status" id="statusData">Memuat data tamu dari CSV...</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 50px;">No</th>
+                        <th>Nama</th>
+                        <th>Instansi</th>
+                        <th>Kategori</th>
+                        <th>WhatsApp</th>
+                        <th style="width: 250px;">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelTamu">
+                    <tr class="empty-row"><td colspan="6">Memuat data CSV...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Edu Fair & Career Day | SMKN 6 Tangerang Selatan</p>
+    </footer>
+
+    <!-- SUPABASE & CONFIGURATION -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="supabase.js"></script>
+
+    <!-- LOGIKA ADMIN -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        let daftarSemuaRSVP = [];
+        let daftarSemuaTamu = [];
+
+        // ===================================================
+        // 1. MEMUAT DATA RSVP DARI SUPABASE
+        // ===================================================
+
+        async function muatDataRSVP() {
+            const statusRSVP = document.getElementById("statusRSVP");
+            const btnRefresh = document.getElementById("btnRefreshRSVP");
+
+            if (statusRSVP) statusRSVP.textContent = "Mengambil data terbaru dari Supabase...";
+            if (btnRefresh) {
+                btnRefresh.disabled = true;
+                btnRefresh.textContent = "↻ Memuat...";
+            }
+
+            if (!window.supabaseClient) {
+                if (statusRSVP) {
+                    statusRSVP.innerHTML = '<span style="color:#c02b2b;">Koneksi Supabase belum siap. Periksa apakah config.js sudah benar.</span>';
+                }
+                if (btnRefresh) {
+                    btnRefresh.disabled = false;
+                    btnRefresh.textContent = "↻ Muat Ulang RSVP";
+                }
+                return;
+            }
+
+            try {
+                const { data, error } = await window.supabaseClient
+                    .from("konfirmasi_kehadiran")
+                    .select("*")
+                    .order("tanggal", { ascending: false });
+
+                if (error) throw error;
+
+                daftarSemuaRSVP = data || [];
+                tampilkanTabelRSVP(daftarSemuaRSVP);
+                hitungStatistikRSVP(daftarSemuaRSVP);
+
+                if (statusRSVP) {
+                    statusRSVP.textContent = `Berhasil memuat ${daftarSemuaRSVP.length} data konfirmasi kehadiran.`;
+                }
+
+            } catch (err) {
+                console.error("Gagal memuat RSVP dari Supabase:", err);
+                if (statusRSVP) {
+                    statusRSVP.innerHTML = `<span style="color:#c02b2b;">Gagal mengambil data dari Supabase: ${err.message || err}</span>`;
+                }
+            } finally {
+                if (btnRefresh) {
+                    btnRefresh.disabled = false;
+                    btnRefresh.textContent = "↻ Muat Ulang RSVP";
+                }
+            }
+        }
+
+        function hitungStatistikRSVP(data) {
+            const total = data.length;
+            const hadir = data.filter(d => (d.konfirmasi || "").toLowerCase() === "hadir").length;
+            const tidakHadir = data.filter(d => (d.konfirmasi || "").toLowerCase() === "tidak hadir").length;
+
+            const elTotal = document.getElementById("statTotalRSVP");
+            const elHadir = document.getElementById("statHadir");
+            const elTidakHadir = document.getElementById("statTidakHadir");
+
+            if (elTotal) elTotal.textContent = total;
+            if (elHadir) elHadir.textContent = hadir;
+            if (elTidakHadir) elTidakHadir.textContent = tidakHadir;
+        }
+
+        function tampilkanTabelRSVP(data) {
+            const tabel = document.getElementById("tabelRSVP");
+            if (!tabel) return;
+
+            tabel.innerHTML = "";
+
+            if (!data || data.length === 0) {
+                tabel.innerHTML = '<tr class="empty-row"><td colspan="6">Belum ada konfirmasi kehadiran yang tercatat di database.</td></tr>';
+                return;
+            }
+
+            data.forEach((item, index) => {
+                const tr = document.createElement("tr");
+
+                const tdNo = document.createElement("td");
+                tdNo.textContent = index + 1;
+                tr.appendChild(tdNo);
+
+                const tdNama = document.createElement("td");
+                tdNama.innerHTML = `<strong>${escapeHtml(item.nama || "-")}</strong>`;
+                tr.appendChild(tdNama);
+
+                const tdInstansi = document.createElement("td");
+                tdInstansi.textContent = item.instansi || "-";
+                tr.appendChild(tdInstansi);
+
+                const tdKategori = document.createElement("td");
+                tdKategori.textContent = item.kategori || "-";
+                tr.appendChild(tdKategori);
+
+                const tdKonfirmasi = document.createElement("td");
+                const isHadir = (item.konfirmasi || "").toLowerCase() === "hadir";
+                tdKonfirmasi.innerHTML = `<span class="badge ${isHadir ? 'badge-hadir' : 'badge-tidak-hadir'}">${escapeHtml(item.konfirmasi || "-")}</span>`;
+                tr.appendChild(tdKonfirmasi);
+
+                const tdTanggal = document.createElement("td");
+                let waktuTeks = "-";
+                if (item.tanggal) {
+                    try {
+                        const d = new Date(item.tanggal);
+                        waktuTeks = d.toLocaleString("id-ID", {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        });
+                    } catch (e) {
+                        waktuTeks = item.tanggal;
+                    }
+                }
+                tdTanggal.textContent = waktuTeks;
+                tr.appendChild(tdTanggal);
+
+                tabel.appendChild(tr);
+            });
+        }
+
+        function filterTabelRSVP() {
+            const keyword = (document.getElementById("inputCariRSVP")?.value || "").toLowerCase();
+            const statusFilter = (document.getElementById("filterStatusRSVP")?.value || "").toLowerCase();
+
+            const filtered = daftarSemuaRSVP.filter(item => {
+                const namaMatch = (item.nama || "").toLowerCase().includes(keyword);
+                const instansiMatch = (item.instansi || "").toLowerCase().includes(keyword);
+                const cocokKeyword = !keyword || namaMatch || instansiMatch;
+
+                const statusMatch = !statusFilter || (item.konfirmasi || "").toLowerCase() === statusFilter;
+
+                return cocokKeyword && statusMatch;
+            });
+
+            tampilkanTabelRSVP(filtered);
+        }
+
+        document.getElementById("inputCariRSVP")?.addEventListener("input", filterTabelRSVP);
+        document.getElementById("filterStatusRSVP")?.addEventListener("change", filterTabelRSVP);
+        document.getElementById("btnRefreshRSVP")?.addEventListener("click", muatDataRSVP);
+
+
+        // ===================================================
+        // 2. MEMUAT DATA TAMU DARI CSV (UNDANGAN & WHATSAPP)
+        // ===================================================
+
+        function parseCSV(text) {
+            const rows = [];
+            let row = [];
+            let value = "";
+            let insideQuotes = false;
+
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const next = text[i + 1];
+
+                if (char === '"' && insideQuotes && next === '"') {
+                    value += '"';
+                    i++;
+                } else if (char === '"') {
+                    insideQuotes = !insideQuotes;
+                } else if (char === "," && !insideQuotes) {
+                    row.push(value.trim());
+                    value = "";
+                } else if ((char === "\n" || char === "\r") && !insideQuotes) {
+                    if (char === "\r" && next === "\n") i++;
+                    row.push(value.trim());
+                    if (row.some(cell => cell !== "")) {
+                        rows.push(row);
+                    }
+                    row = [];
+                    value = "";
+                } else {
+                    value += char;
+                }
+            }
+
+            if (value !== "" || row.length > 0) {
+                row.push(value.trim());
+                if (row.some(cell => cell !== "")) {
+                    rows.push(row);
+                }
+            }
+
+            return rows;
+        }
+
+        async function muatDataTamuCSV() {
+            const statusData = document.getElementById("statusData");
+            const statTotalUndangan = document.getElementById("statTotalUndangan");
+
+            try {
+                const response = await fetch("data-tamu.csv");
+                if (!response.ok) {
+                    throw new Error("File data-tamu.csv tidak ditemukan di server/folder.");
+                }
+
+                const text = (await response.text()).replace(/^\uFEFF/, "");
+                const rows = parseCSV(text);
+
+                if (rows.length < 2) {
+                    throw new Error("Data di CSV masih kosong.");
+                }
+
+                const headers = rows[0].map(h => h.trim());
+                daftarSemuaTamu = rows.slice(1).map(row => {
+                    const data = {};
+                    headers.forEach((header, index) => {
+                        data[header] = row[index] || "";
+                    });
+                    return data;
+                });
+
+                tampilkanTabelTamu(daftarSemuaTamu);
+
+                if (statusData) {
+                    statusData.textContent = `Berhasil memuat ${daftarSemuaTamu.length} tamu dari data-tamu.csv.`;
+                }
+                if (statTotalUndangan) {
+                    statTotalUndangan.textContent = daftarSemuaTamu.length;
+                }
+
+            } catch (err) {
+                console.error("Gagal membaca CSV:", err);
+                if (statusData) {
+                    statusData.innerHTML = `<span style="color:#c02b2b;">Gagal memuat data tamu: ${err.message}</span>`;
+                }
+            }
+        }
+
+        function tampilkanTabelTamu(data) {
+            const tabel = document.getElementById("tabelTamu");
+            if (!tabel) return;
+
+            tabel.innerHTML = "";
+
+            if (!data || data.length === 0) {
+                tabel.innerHTML = '<tr class="empty-row"><td colspan="6">Tidak ada data tamu yang cocok.</td></tr>';
+                return;
+            }
+
+            data.forEach((tamu, idx) => {
+                const nama = tamu.nama_tamu || "";
+                const instansi = tamu.instansi || "";
+                const kategori = tamu.kategori || "";
+                const nomor = tamu.no_whatsapp || "";
+
+                // Link personalisasi ke index.html
+                const link = new URL("index.html", window.location.href);
+                link.searchParams.set("nama", nama);
+                link.searchParams.set("instansi", instansi);
+                link.searchParams.set("kategori", kategori);
+
+                const pesan = 
+`Yth. ${nama}
+${instansi}
+
+_Assalamu'alaikum Wr. Wb._
+
+Dengan hormat, kami mengundang Bapak/Ibu pimpinan instansi/mitra untuk hadir dan berpartisipasi dalam ajang tahunan:
+
+🎓 EDU FAIR & CAREER EXPO 2026
+"Connecting Competence to Future: Bekerja, Melanjutkan, Berwirausaha"
+
+Hari, Tanggal : Rabu, 25 November 2026
+Waktu         : 07.00 – 14.00 WIB
+Lokasi        : SMKN 6 Kota Tangerang Selatan
+
+Informasi lengkap & formulir konfirmasi kehadiran (RSVP) dapat diakses melalui tautan personal berikut:
+${link.href}
+
+Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu berkenan hadir memenuhi undangan ini.
+
+Atas perhatian, waktu, dan kerja sama yang baik, kami ucapkan terima kasih.
+
+Hormat kami,
+Panitia Edu Fair & Career Expo 2026`;
+
+                let nomorBersih = nomor.replace(/\D/g, "");
+                if (nomorBersih.startsWith("0")) {
+                    nomorBersih = "62" + nomorBersih.substring(1);
+                }
+
+                const linkWA = "https://wa.me/" + nomorBersih + "?text=" + encodeURIComponent(pesan);
+
+                const tr = document.createElement("tr");
+
+                const tdNo = document.createElement("td");
+                tdNo.textContent = idx + 1;
+                tr.appendChild(tdNo);
+
+                const tdNama = document.createElement("td");
+                tdNama.innerHTML = `<strong>${escapeHtml(nama)}</strong>`;
+                tr.appendChild(tdNama);
+
+                const tdInstansi = document.createElement("td");
+                tdInstansi.textContent = instansi;
+                tr.appendChild(tdInstansi);
+
+                const tdKategori = document.createElement("td");
+                tdKategori.textContent = kategori;
+                tr.appendChild(tdKategori);
+
+                const tdNomor = document.createElement("td");
+                tdNomor.textContent = nomor || "-";
+                tr.appendChild(tdNomor);
+
+                const tdAksi = document.createElement("td");
+
+                const btnWA = document.createElement("a");
+                btnWA.href = linkWA;
+                btnWA.target = "_blank";
+                btnWA.rel = "noopener";
+                btnWA.className = "btn-wa";
+                btnWA.textContent = "Kirim WhatsApp";
+
+                const btnView = document.createElement("a");
+                btnView.href = link.href;
+                btnView.target = "_blank";
+                btnView.rel = "noopener";
+                btnView.className = "btn-view";
+                btnView.textContent = "Buka Undangan";
+
+                tdAksi.appendChild(btnWA);
+                tdAksi.appendChild(btnView);
+                tr.appendChild(tdAksi);
+
+                tabel.appendChild(tr);
+            });
+        }
+
+        function filterTabelTamu() {
+            const keyword = (document.getElementById("inputCariTamu")?.value || "").toLowerCase();
+            const filtered = daftarSemuaTamu.filter(tamu => {
+                return (tamu.nama_tamu || "").toLowerCase().includes(keyword) ||
+                       (tamu.instansi || "").toLowerCase().includes(keyword) ||
+                       (tamu.kategori || "").toLowerCase().includes(keyword);
+            });
+            tampilkanTabelTamu(filtered);
+        }
+
+        document.getElementById("inputCariTamu")?.addEventListener("input", filterTabelTamu);
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // ===================================================
+        // 3. JALANKAN PEMUATAN AWAL & REALTIME
+        // ===================================================
+
+        muatDataRSVP();
+        muatDataTamuCSV();
+
+        // Subscribe to Supabase Realtime jika didukung
+        try {
+            if (window.supabaseClient) {
+                window.supabaseClient
+                    .channel('konfirmasi-kehadiran-channel')
+                    .on('postgres_changes', { event: '*', schema: 'public', table: 'konfirmasi_kehadiran' }, payload => {
+                        console.log('Perubahan data realtime diterima dari Supabase:', payload);
+                        muatDataRSVP();
+                    })
+                    .subscribe();
+            }
+        } catch (e) {
+            console.log("Realtime subscription opsional:", e);
+        }
+
+    });
+    </script>
+
+</body>
+</html>

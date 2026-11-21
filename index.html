@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu Fair & Career Day 2026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="hero">
+        <div class="hero-content">
+            <span class="label">SMKN 6 TANGERANG SELATAN</span>
+            <h1>PROGRAM EDU FAIR &<br>CAREER DAY 2026</h1>
+            <p>Membangun Masa Depan, Membuka Peluang</p>
+            <a href="#undangan" class="btn">Lihat Undangan</a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- UNDANGAN KHUSUS -->
+        <section class="section penerima" id="undangan">
+            <span class="label">OFFICIAL INVITATION</span>
+            <h2>Kepada Yth.</h2>
+
+            <h1 id="namaPenerima">Tamu Undangan</h1>
+            <p id="instansiPenerima">Instansi</p>
+            <p class="kategori" id="kategoriPenerima">Kategori Tamu</p>
+
+            <p>
+                Dengan hormat, kami mengundang Anda untuk menghadiri
+                kegiatan Edu Fair & Career Day 2026.
+            </p>
+        </section>
+
+
+        <!-- TENTANG ACARA -->
+        <section class="section">
+            <h2>Tentang Acara</h2>
+
+            <p>
+                Edu Fair & Career Day 2026 merupakan kegiatan yang
+                mempertemukan dunia pendidikan dan dunia kerja.
+                Acara ini menjadi kesempatan untuk mengenal perguruan
+                tinggi, perusahaan, serta berbagai peluang karier.
+            </p>
+
+            <div class="info-grid">
+
+                <div class="info-card">
+                    <h3>Tanggal</h3>
+                    <p>Rabu, 25 November 2026</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Waktu</h3>
+                    <p>07.00 – 14.00 WIB</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Tempat</h3>
+                    <p>SMKN 6 Tangerang Selatan</p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- BENEFIT ACARA -->
+        <section class="section">
+            <h2>Benefit Mengikuti Acara</h2>
+
+            <div class="benefit-grid">
+                <div class="benefit-card">
+                    Informasi Perguruan Tinggi
+                </div>
+
+                <div class="benefit-card">
+                    Peluang Karier
+                </div>
+
+                <div class="benefit-card">
+                    Konsultasi Pendidikan
+                </div>
+
+                <div class="benefit-card">
+                    Relasi dan Networking
+                </div>
+            </div>
+        </section>
+
+
+        <!-- LOKASI ACARA -->
+        <section class="section">
+            <h2>Lokasi Acara</h2>
+
+            <iframe
+                src="https://www.google.com/maps?q=SMKN%206%20Tangerang%20Selatan&output=embed"
+                width="100%"
+                height="300"
+                style="border:0;"
+                loading="lazy">
+            </iframe>
+        </section>
+
+
+        <!-- FORM RSVP -->
+        <section class="section rsvp" id="rsvp">
+            <h2>Konfirmasi Kehadiran</h2>
+
+            <p>
+                Mohon konfirmasi kehadiran Anda melalui formulir berikut.
+            </p>
+
+            <form id="formRSVP">
+
+                <label for="rsvpNama">Nama</label>
+                <input
+                    type="text"
+                    id="rsvpNama"
+                    placeholder="Masukkan nama lengkap"
+                    required>
+
+                <label for="rsvpInstansi">Instansi / Asal Sekolah</label>
+                <input
+                    type="text"
+                    id="rsvpInstansi"
+                    placeholder="Contoh: SMKN 6 Tangerang Selatan / Umum"
+                    required>
+
+                <label for="konfirmasi">Konfirmasi Kehadiran</label>
+                <select id="konfirmasi" required>
+                    <option value="">Pilih konfirmasi</option>
+                    <option value="Hadir">Hadir</option>
+                    <option value="Tidak Hadir">Tidak Hadir</option>
+                </select>
+
+                <button type="submit" class="btn" id="btnKirimRSVP">
+                    Kirim Konfirmasi
+                </button>
+
+            </form>
+
+            <p id="pesanRSVP"></p>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Edu Fair & Career Day | SMKN 6 Tangerang Selatan</p>
+    </footer>
+
+    <!-- SUPABASE & CONFIGURATION -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="supabase.js"></script>
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>

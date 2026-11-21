@@ -1,0 +1,213 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f4f8ff;
+    color: #172c4d;
+    line-height: 1.7;
+}
+
+.hero {
+    min-height: 580px;
+    background: linear-gradient(135deg, #102d55, #2469a8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 40px 20px;
+}
+
+.hero-content {
+    max-width: 750px;
+}
+
+.label {
+    color: #e6b957;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    line-height: 1.2;
+    margin: 20px 0;
+}
+
+.hero p {
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background: #e6b957;
+    color: #102d55;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #f5d486;
+}
+
+.section {
+    max-width: 1000px;
+    margin: 55px auto;
+    padding: 35px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(16, 45, 85, 0.07);
+}
+
+.section h2 {
+    color: #174879;
+    margin-bottom: 20px;
+    font-size: 27px;
+}
+
+.penerima {
+    text-align: center;
+    border-top: 5px solid #e6b957;
+}
+
+.penerima h1 {
+    color: #174879;
+    font-size: 32px;
+    margin: 10px 0;
+}
+
+.penerima p {
+    margin: 12px 0;
+}
+
+.kategori {
+    display: inline-block;
+    background: #e8f2ff;
+    color: #174879;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.info-grid,
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.info-card,
+.benefit-card {
+    background: #edf5ff;
+    padding: 22px;
+    border-radius: 12px;
+}
+
+.info-card h3 {
+    color: #2469a8;
+    margin-bottom: 8px;
+}
+
+.rundown p {
+    padding: 13px;
+    border-bottom: 1px solid #e4eaf2;
+}
+
+.benefit-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.benefit-card {
+    text-align: center;
+    font-weight: bold;
+}
+
+iframe {
+    border-radius: 12px;
+}
+
+.rsvp form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.rsvp input,
+.rsvp select {
+    padding: 13px 16px;
+    border: 1px solid #ccd8e7;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.rsvp input:focus,
+.rsvp select:focus {
+    outline: none;
+    border-color: #2469a8;
+    box-shadow: 0 0 0 3px rgba(36, 105, 168, 0.15);
+}
+
+.rsvp input[readonly] {
+    background-color: #f1f6fc;
+    color: #496584;
+    cursor: not-allowed;
+}
+
+.rsvp button {
+    margin-top: 10px;
+    font-size: 16px;
+    transition: all 0.25s ease;
+}
+
+#pesanRSVP {
+    margin-top: 15px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 1.5;
+    empty-cells: hide;
+}
+
+#pesanRSVP:not(:empty) {
+    background-color: #f4fbf6;
+    border: 1px solid #d1eedb;
+}
+
+footer {
+    background: #102d55;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+@media (max-width: 650px) {
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .section {
+        margin: 25px 15px;
+        padding: 22px;
+    }
+
+    .info-grid,
+    .benefit-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .penerima h1 {
+        font-size: 25px;
+    }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "undangan-edu-fair-2026",
+  "version": "1.0.0",
+  "description": "Website Undangan Edu Fair & Career Day 2026 SMKN 6 Tangerang Selatan dengan RSVP Supabase",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "edu-fair",
+    "undangan",
+    "rsvp",
+    "supabase"
+  ],
+  "author": "SMKN 6 Tangerang Selatan",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.48.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
